@@ -29,7 +29,17 @@ const sendForm = () => {
                 statusMessage.textContent = 'Спасибо! Мы скоро с вами свяжемся!'; 
                 
             })
-            .catch(error => console.error(error));              
+            .catch(error => console.error(error));  
+            
+            setTimeout(() => {
+                form.querySelectorAll('input').forEach(item => {
+                    item.value = '';
+                });
+            }, 3000);
+            
+            setTimeout(() => {
+                form.removeChild(successMessage);
+            }, 7000);
         });            
     
     });
