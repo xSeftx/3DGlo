@@ -8,16 +8,9 @@ const sendForm = () => {
            
     
     document.querySelectorAll('form').forEach(form => {
-        const inputMail = querySelectorAll('.form-email');        
         form.addEventListener('submit', e => {
-            e.preventDefault();            
-            form.appendChild(statusMessage);
-            if(inputEmail.value === ''){
-                statusMessage.textContent = 'Заполните поле E-mail!';
-                statusMessage.style.color = 'red';
-                return  
-            }  
-            statusMessage.style.color = 'white';    
+            e.preventDefault();
+            form.appendChild(statusMessage);    
             const formData = new FormData(form);
             const body = {};
             formData.forEach((val, key) => body[key] = val);                
@@ -36,19 +29,7 @@ const sendForm = () => {
                 statusMessage.textContent = 'Спасибо! Мы скоро с вами свяжемся!'; 
                 
             })
-            .catch(error => console.error(error));  
-            
-            setTimeout(() => {
-                form.querySelectorAll('input').forEach(item => {
-                    item.value = '';
-                });
-            }, 3000);
-            
-            setTimeout(() => {
-                statusMessage.textContent = '';
-            }, 7000);
-            
-            
+            .catch(error => console.error(error));              
         });            
     
     });
