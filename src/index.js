@@ -22,7 +22,7 @@ import inputForm from './modules/inputForm'
 import 'regenerator-runtime/runtime'
 
 // Timer    
-countTimer('17 november 2020');
+countTimer('21 november 2020');
 
 // калькулятор
 calc();
