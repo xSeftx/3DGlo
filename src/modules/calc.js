@@ -8,11 +8,13 @@ const calc = (price = 100) => {
         calcCount = document.querySelector('.calc-count'),
         totalValue = document.getElementById('total');        
 
+    
+    let interval;
     const countSum = () => {
         let total = 0,
             countValue = 1,
             dayValue = 1; 
-                          
+                            
         const squareValue = +calcSquare.value,
             typeValue = calcType.options[calcType.selectedIndex].value;
 
@@ -30,30 +32,26 @@ const calc = (price = 100) => {
 
         if(typeValue && squareValue){
             total = price * typeValue * squareValue * countValue * dayValue;
-        }
-        
+        }       
 
-        if(total){
-            const interval = setInterval(function(){
-                if(totalValue.innerHTML*1+50 <= total){
-                    totalValue.innerHTML= totalValue.innerHTML*1+50;   
-                    
-                    
-                } else if(totalValue.innerHTML*1-50 >= total){
-                    totalValue.innerHTML = totalValue.innerHTML*1-50;
-                    
-                }
-                else if(totalValue.innerHTML === total){
-                    clearInterval(interval);
-                    
-                }  
-                
-            },1);           
-
+        
+        const step = Math.floor((total / 1000) > 0 ? (total / 1000) * 5 : 5);
+        let newTotal = 0;
+        const showAnimation = (result, stepValue) => {
+        if (newTotal < result) {
+            if (newTotal + stepValue > result) newTotal = result;
+            else newTotal += stepValue;
         }
+        else clearInterval(interval);
+        totalValue.textContent = newTotal;
+        };
+
+        if (interval !== undefined) clearInterval(interval);
+        interval = setInterval(() => showAnimation(total, step), 1);
         
         
-    };  
+        
+    }; 
     calcBlock.addEventListener('change', (event) => {
         const target = event.target;
         if (target.matches('.calc-type, .calc-square, .calc-day, .calc-count')) {
