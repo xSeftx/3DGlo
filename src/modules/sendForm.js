@@ -11,11 +11,9 @@ const sendForm = () => {
         const inputEmail = document.querySelector('#form1-email'),   
                 inputEmailPopup = document.querySelector('#form2-email'),
                 inputEmailTop = document.querySelector('#form3-email');     
-        console.log(inputEmail);     
-        form.addEventListener('submit', e => {
+            form.addEventListener('submit', e => {
             e.preventDefault();                
-            form.appendChild(statusMessage); 
-            console.log(inputEmail.value);
+            form.appendChild(statusMessage);             
             if(inputEmail.value === ''&& inputEmailPopup.value === '' && inputEmailTop.value === ''){
                 statusMessage.textContent = 'Заполните поле E-mail!'; 
                 statusMessage.style.color = 'red';                  
