@@ -13,9 +13,8 @@ function countTimer(deadLine){
             minutes = Math.floor((timeRemaining / 60) % 60),
             hours = Math.floor(timeRemaining / 60 / 60);
             return {timeRemaining, hours, minutes, seconds};
-    }
-
-    const updateClock = setInterval(() => {
+    }    
+    const updateClock = () => {
         let timer = getTimeRemaining(); 
         let getZero = function(nam){
             if (nam >= 0 && nam < 10) { 
@@ -28,18 +27,17 @@ function countTimer(deadLine){
         timerMinutes.textContent = getZero(timer.minutes);
         timerSeconds.textContent = getZero(timer.seconds);
 
-        if(timer.timeRemaining > 0){
+        if(timer.timeRemaining < 0){
 
-            const idInterval = setInterval(updateClock, 1000);
-        } else {
             timerHours.textContent = '00';
             timerMinutes.textContent = '00';
             timerSeconds.textContent = '00';
             clearInterval(countTimer);
         }
-        
-        
-    },100);
+    }
+    updateClock();
+    setInterval(updateClock, 1000);
+
 };
 
     

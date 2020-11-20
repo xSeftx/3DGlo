@@ -8,16 +8,20 @@ const sendForm = () => {
            
     
     document.querySelectorAll('form').forEach(form => {
-        const inputMail = querySelectorAll('.form-email');        
+        const inputEmail = document.querySelector('#form1-email'),   
+                inputEmailPopup = document.querySelector('#form2-email'),
+                inputEmailTop = document.querySelector('#form3-email');     
+        console.log(inputEmail);     
         form.addEventListener('submit', e => {
-            e.preventDefault();            
-            form.appendChild(statusMessage);
-            if(inputEmail.value === ''){
-                statusMessage.textContent = 'Заполните поле E-mail!';
-                statusMessage.style.color = 'red';
-                return  
-            }  
-            statusMessage.style.color = 'white';    
+            e.preventDefault();                
+            form.appendChild(statusMessage); 
+            console.log(inputEmail.value);
+            if(inputEmail.value === ''&& inputEmailPopup.value === '' && inputEmailTop.value === ''){
+                statusMessage.textContent = 'Заполните поле E-mail!'; 
+                statusMessage.style.color = 'red';                  
+                return ; 
+            }
+            statusMessage.style.color = 'white';     
             const formData = new FormData(form);
             const body = {};
             formData.forEach((val, key) => body[key] = val);                

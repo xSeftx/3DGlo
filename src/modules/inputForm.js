@@ -63,7 +63,9 @@ const inputForm = () => {
 
         });
 
-    }; 
+    };   
+    
+    
     inputFormMassege(); 
     inputFormPhone(); 
     inputCalculator();   
