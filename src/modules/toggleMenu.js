@@ -12,6 +12,24 @@ const toggleMenu = () =>{
     menu.addEventListener('click', (event) => {
         if (!event.target.classList.contains('active-menu')) handlerMenu();
     });
+
+    const scrollTo = () => {
+        const anchors = document.querySelectorAll('a')       
+
+        for (let anchor of anchors) {
+            anchor.addEventListener('click', e => {
+              e.preventDefault()              
+              const blockID = anchor.getAttribute('href')              
+              document.querySelector(blockID).scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+              })
+            })
+          }
+
+
+    };
+    scrollTo();
         
 }; 
 
