@@ -2,9 +2,12 @@
 
 //send-ajax-form
 const sendForm = () => {        
-    const statusMessage = document.createElement('div');        
+    const statusMessage = document.createElement('div');            
     statusMessage.style.cssText = `font-size: 2rem;
                                 color: white`;
+    const loader = document.createElement('img');
+    loader.src = '/images/Spinner.gif';
+    
            
     
     document.querySelectorAll('form').forEach(form => {
@@ -19,11 +22,12 @@ const sendForm = () => {
                 statusMessage.style.color = 'red';                  
                 return ; 
             }
+            statusMessage.textContent = '';
             statusMessage.style.color = 'white';     
             const formData = new FormData(form);
             const body = {};
-            formData.forEach((val, key) => body[key] = val);                
-            statusMessage.textContent = 'Загрузка...';                  
+            formData.forEach((val, key) => body[key] = val); 
+            form.appendChild(loader);                             
             
             postData(body)
                 .then(response => {
@@ -34,8 +38,11 @@ const sendForm = () => {
                 }
                 setTimeout(() => {
                     statusMessage.textContent = '';
+                    
                 }, 5000);
+                form.removeChild(loader);
                 statusMessage.textContent = 'Спасибо! Мы скоро с вами свяжемся!'; 
+                
                 
             })
             .catch(error => console.error(error));  
@@ -53,7 +60,7 @@ const sendForm = () => {
             
         });            
     
-    });
+    });   
 
     const postData = body => fetch('./server.php', {
         method: 'POST',

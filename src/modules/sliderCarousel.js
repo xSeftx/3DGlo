@@ -191,7 +191,7 @@ const sliderCarousel = () => {
         });
     
     carousel.init();
-    console.log(ok);
+    
 };
 
 export default sliderCarousel;
