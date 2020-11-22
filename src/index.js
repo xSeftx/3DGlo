@@ -20,6 +20,7 @@
     import dataImg from './modules/dataImg'
     import sendForm from './modules/sendForm'
     import inputForm from './modules/inputForm'
+    import sliderCarousel from './modules/sliderCarousel'
     import 'regenerator-runtime/runtime'
 
     // Timer    
@@ -48,4 +49,7 @@
 
     //валидация    
     inputForm();
+
+    //слайдер карусель
+    sliderCarousel();   
 
